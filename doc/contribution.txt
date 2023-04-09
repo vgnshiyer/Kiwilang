@@ -1,0 +1,15 @@
+SER 502 Individual Contribution - Team 5
+
+Members:
+1. Naga Venkata Dharani Vishwanadh Chinta
+2. Sri Harsha Gajavalli
+3. Vignesh Venkatachalam Iyer
+4. Vamsi Krishna Yadav Loya
+5. Anish Unnikrishnan Nair
+
+Week 1 (Apr 9 - Apr 11)
+1. Vignesh Venkatachalam Iyer
+    - Initialized git repository
+    - Created project structure
+    - Added documentation/readme
+
