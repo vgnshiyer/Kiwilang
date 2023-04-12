@@ -14,7 +14,10 @@ Windows
 Linux
 ```
 
-<-- Tools Used (to be added) -->
+The requirements are :
+
+    1. Prolog version 8.x or higher
+    2. Python version 3.7 or higher
 
 <-- Directions to install (to be added) -->
 
