@@ -16,8 +16,8 @@ Linux
 
 The requirements are :
 
-    1. Prolog version 8.x or higher
-    2. Python version 3.7 or higher
+    1. Python version 3.7 or higher
+    2. ANTLR
 
 <-- Directions to install (to be added) -->
 
