@@ -12,7 +12,23 @@ Week 1 (Apr 9 - Apr 11)
     - Initialized git repository
     - Created project structure
     - Added documentation/readme
+    - Added description for language, lexical analyzer.
 
 2. Naga Venkata Dharani Chinta
     - Added information about Interpreter component in Specification document
     - Added a flow diagram about lexer, parser, interpreter of our programming language
+
+3. Sri Harsha Gajavalli
+    - Researched on how to make tokenizers with python language
+    - Added base BNF Grammar for the language
+
+4. Vamsi Krishna Yadav Loya
+    - Researched on how to use AST and perform evaluation with python
+    - Added description for parser
+
+5. Anish Unnikrishnan Nair
+    - Researched on python libraries to use for tokenizer and interpreter
+
+Contribution plan for milestone 2
+
+We plan to divide task among five members for creating different components of the system. Five people will take one component from lexer, parser, interpreter, documentation, writing sample programs. 
