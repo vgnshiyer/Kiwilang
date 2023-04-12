@@ -16,3 +16,8 @@ Week 1 (Apr 9 - Apr 11)
 2. Naga Venkata Dharani Chinta
     - Added information about Interpreter component in Specification document
     - Added a flow diagram about lexer, parser, interpreter of our programming language
+    
+3. Vamsi Krishna Yadav Loya
+   - Imperative programming language for which I have created Interpreter.
+   - Interpreter is capable of handling various tasks such as variable management, expression evaluation, control flow, and input/output operations.
+  
