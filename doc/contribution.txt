@@ -32,3 +32,9 @@ Week 1 (Apr 9 - Apr 11)
 Contribution plan for milestone 2
 
 We plan to divide task among five members for creating different components of the system. Five people will take one component from lexer, parser, interpreter, documentation, writing sample programs. 
+
+Week 2 (Apr 16 - Apr 22)
+1. Vignesh Venkatachalam Iyer
+    - Added grammar for the language in .g4 file
+    - Initialized antlr
+    - Generated lexer and parser for the grammar
