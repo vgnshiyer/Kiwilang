@@ -1,8 +1,8 @@
 antlr:
-	sudo curl -O https://www.antlr.org/download/antlr-4.9.2-complete.jar
-	export CLASSPATH=".:antlr-4.9.2-complete.jar:$CLASSPATH"
-	alias antlr4='java -jar antlr-4.9.2-complete.jar'
+	sudo curl -O https://www.antlr.org/download/antlr-4.9.2-complete.jar && \
+	export CLASSPATH=".:antlr-4.9.2-complete.jar:$CLASSPATH" && \
+	alias antlr4='java -jar antlr-4.9.2-complete.jar' && \
 	# alias grun='java org.antlr.v4.gui.TestRig'
 
 run:
-	antlr4 -Dlanguage=python3 kiwi_grammar.g4 -visitor -o dist
+	antlr4 -Dlanguage=python3 Kiwi.g4 -visitor -o dist
