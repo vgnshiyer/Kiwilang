@@ -12,7 +12,7 @@ from antlr4.InputStream import InputStream
 from lexer_and_parser.KiwiLexer import KiwiLexer
 from lexer_and_parser.KiwiParser import KiwiParser
 from lexer_and_parser.KiwiListener import KiwiListener
-from lexer_and_parser.KiwiVisitor import KiwiVisitor
+from KiwiInterpreter import KiwiInterpreter
 
 DEBUG_LEVEL = True
 
@@ -30,7 +30,7 @@ def prepare():
     if DEBUG_LEVEL:
         print(Trees.toStringTree(tree, None, parser))
 
-    visitor = KiwiVisitor()
+    visitor = KiwiInterpreter()
     result = visitor.visit(tree)
     print(result)
 

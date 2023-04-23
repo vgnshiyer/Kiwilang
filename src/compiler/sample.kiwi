@@ -7,5 +7,5 @@ fn fact : ( n ) {
     }
 }
 
-x := "hello"
-print fact(4)
+str x := "hello"
+print x

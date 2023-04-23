@@ -22,16 +22,14 @@ statement
 declaration
         : 'int' ID (ASSIGN arithmeticExpr)?
         | 'bool' ID (ASSIGN booleanExpr)?
-        | 'str' ID (ASSIGN STRING)?
+        | 'str' ID (ASSIGN stringExpr)?
         | ID ASSIGN arithmeticExpr 
         | ID ASSIGN booleanExpr
         | ID ASSIGN stringExpr
         ;
 
 incrementExpr
-        : ID ASSIGN arithmeticExpr
-        | ID ASSIGN booleanExpr
-        | ID '++'
+        : ID '++'
         | ID '--'
         | ID operator=(ADD|SUB|MUL|DIV) ASSIGN arithmeticExpr
         ;
@@ -68,7 +66,7 @@ whileExpr
         ;
 
 forExpr
-        : 'for' '(' declaration ';' booleanExpr ';' incrementExpr ')'
+        : 'for' '(' declaration ';' booleanExpr ';' (declaration|incrementExpr) ')'
         ;
 
 specialForExpr
