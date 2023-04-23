@@ -32,7 +32,6 @@ def prepare():
 
     visitor = KiwiInterpreter()
     result = visitor.visit(tree)
-    print(result)
 
 if __name__ == '__main__':
     prepare()

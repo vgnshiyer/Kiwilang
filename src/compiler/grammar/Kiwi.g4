@@ -16,7 +16,7 @@ block
         ;
 
 statement
-        : (declaration|ifExpr|whileExpr|forExpr|specialForExpr|display|function|give|functionCall)
+        : (declaration|incrementExpr|ifExpr|whileExpr|forExpr|specialForExpr|display|function|give|functionCall)
         ;
 
 declaration
