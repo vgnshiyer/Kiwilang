@@ -161,5 +161,14 @@ class KiwiListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by KiwiParser#stringExpr.
+    def enterStringExpr(self, ctx:KiwiParser.StringExprContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#stringExpr.
+    def exitStringExpr(self, ctx:KiwiParser.StringExprContext):
+        pass
+
+
 
 del KiwiParser

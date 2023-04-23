@@ -25,7 +25,7 @@ declaration
         | 'str' ID (ASSIGN STRING)?
         | ID ASSIGN arithmeticExpr 
         | ID ASSIGN booleanExpr
-        | ID ASSIGN STRING
+        | ID ASSIGN stringExpr
         ;
 
 incrementExpr
@@ -96,6 +96,9 @@ functionCall
         : ID params
         ;
 
+stringExpr
+        : STRING
+        ;
 
 STRING
     : '"' (~'"' | '\n' | '\r' | '\\' . | ~('\\'|'"'))* '"'
