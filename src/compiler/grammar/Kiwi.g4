@@ -1,6 +1,7 @@
 /*
+Author: Vignesh Iyer
 Version: 1
-Date: April 19 2023
+Last Updated: April 21 2023
 */
 
 grammar Kiwi;
@@ -15,13 +16,16 @@ block
         ;
 
 statement
-        : (declaration|ifExpr|whileExpr|forExpr|specialForExpr|display)
+        : (declaration|ifExpr|whileExpr|forExpr|specialForExpr|display|function|give|functionCall)
         ;
 
 declaration
         : 'int' ID (ASSIGN arithmeticExpr)?
         | 'bool' ID (ASSIGN booleanExpr)?
+        | 'str' ID (ASSIGN STRING)?
         | ID ASSIGN arithmeticExpr 
+        | ID ASSIGN booleanExpr
+        | ID ASSIGN STRING
         ;
 
 incrementExpr
@@ -36,6 +40,7 @@ arithmeticExpr
         : arithmeticExpr operator=(MUL|DIV) arithmeticExpr
         | arithmeticExpr operator=(ADD|SUB) arithmeticExpr
         | '(' arithmeticExpr ')'
+        | functionCall
         | SUB? DIGIT
         | SUB? ID
         ;
@@ -45,6 +50,7 @@ booleanExpr
         | booleanExpr operator=(AND|OR) booleanExpr
         | arithmeticExpr operator=(GT|LT|GTE|LTE|EQ|NEQ) arithmeticExpr
         | '(' booleanExpr ')'
+        | functionCall
         | (NOT)? BOOL
         | (NOT)? ID
         ;
@@ -70,8 +76,30 @@ specialForExpr
         ;
 
 display
-        : 'print' (DIGIT|BOOL|ID|arithmeticExpr|booleanExpr)
+        : 'print' (DIGIT|BOOL|ID|arithmeticExpr|booleanExpr|STRING)
         ;
+
+function
+        : 'fn' ID ':' params '{' block '}'
+        ;
+
+params
+        : '()'
+        | '(' (arithmeticExpr|booleanExpr) (',' (arithmeticExpr|booleanExpr))* ')'
+        ;
+
+give
+        : 'give' (ID|BOOL|STRING|arithmeticExpr|booleanExpr|functionCall)
+        ;
+
+functionCall
+        : ID params
+        ;
+
+
+STRING
+    : '"' (~'"' | '\n' | '\r' | '\\' . | ~('\\'|'"'))* '"'
+    ;
 
 DIGIT
         : [1-9] [0-9]*
