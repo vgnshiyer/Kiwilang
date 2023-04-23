@@ -125,5 +125,41 @@ class KiwiListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by KiwiParser#function.
+    def enterFunction(self, ctx:KiwiParser.FunctionContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#function.
+    def exitFunction(self, ctx:KiwiParser.FunctionContext):
+        pass
+
+
+    # Enter a parse tree produced by KiwiParser#params.
+    def enterParams(self, ctx:KiwiParser.ParamsContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#params.
+    def exitParams(self, ctx:KiwiParser.ParamsContext):
+        pass
+
+
+    # Enter a parse tree produced by KiwiParser#give.
+    def enterGive(self, ctx:KiwiParser.GiveContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#give.
+    def exitGive(self, ctx:KiwiParser.GiveContext):
+        pass
+
+
+    # Enter a parse tree produced by KiwiParser#functionCall.
+    def enterFunctionCall(self, ctx:KiwiParser.FunctionCallContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#functionCall.
+    def exitFunctionCall(self, ctx:KiwiParser.FunctionCallContext):
+        pass
+
+
 
 del KiwiParser

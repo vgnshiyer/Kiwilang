@@ -38,3 +38,5 @@ Week 2 (Apr 16 - Apr 22)
     - Added grammar for the language in .g4 file
     - Initialized antlr
     - Generated lexer and parser for the grammar
+    - Added function statement and Strings to grammar
+    - Added evaluator

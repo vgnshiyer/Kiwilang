@@ -74,5 +74,25 @@ class KiwiVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by KiwiParser#function.
+    def visitFunction(self, ctx:KiwiParser.FunctionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by KiwiParser#params.
+    def visitParams(self, ctx:KiwiParser.ParamsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by KiwiParser#give.
+    def visitGive(self, ctx:KiwiParser.GiveContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by KiwiParser#functionCall.
+    def visitFunctionCall(self, ctx:KiwiParser.FunctionCallContext):
+        return self.visitChildren(ctx)
+
+
 
 del KiwiParser
