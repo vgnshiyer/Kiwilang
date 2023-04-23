@@ -8,4 +8,5 @@ fn fact : ( n ) {
 }
 
 str x := "hello"
+x := "hello again"
 print x

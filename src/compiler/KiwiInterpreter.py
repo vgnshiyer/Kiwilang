@@ -59,6 +59,41 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#incrementExpr.
     def visitIncrementExpr(self, ctx:KiwiParser.IncrementExprContext):
+        children = ctx.children
+        print(children)
+        if len(children) == 2:
+            var = children[0].getText()
+            if(var in self.env):
+                variable = self.env[var]
+                if(variable.vartype == 'int'):
+                    op = children[1].getText()
+                    if(op == '++'):
+                        variable.val += 1
+                    elif(op == '--'):
+                        variable.val -= 1
+                    updateEnv(variable.var, variable.val, variable.vartype)
+                else: raise Exception('Invalid datatype for operation: Cannot perform arithmetic operations on type {}'.format(variable.vartype))
+            else:
+                raise Exception('Variable not present: variable {} is not defined'.format(var))
+
+        elif len(children) == 3:
+            var = children[0].getText()
+
+            if(var in self.env):
+                variable = self.env[var]
+                if(variable.vartype == 'int'):
+                    op = children[1].getText()
+                    val = self.visit(children[2])
+                    
+                    if op == '+':
+                        variable.val += 1
+                    elif op == '-':
+                        variable.val -= 1
+                    updateEnv(variable.var, variable.val, variable.vartype)
+                else: raise Exception('Invalid datatype for operation: Cannot perform arithmetic operations on type {}'.format(variable.vartype))
+            else:
+                raise Exception('Variable not present: variable {} is not defined'.format(var))
+
         return self.visitChildren(ctx)
 
 
@@ -113,7 +148,7 @@ class KiwiInterpreter(KiwiVisitor):
                 varVal = self.env[var].val
                 print(varVal)
             else:
-                raise Exception('Variable not preset: variable {} is not defined'.format(var))
+                raise Exception('Variable not present: variable {} is not defined'.format(var))
         else:
             raise Exception('print accepts only one argument.')
         
@@ -154,6 +189,7 @@ class KiwiInterpreter(KiwiVisitor):
             print(v.vartype)
             print(v.var)
             print(v.val)
+        print('-'*50)
     
     def updateEnv(self,var,val,vartype):
         if var in self.env:
