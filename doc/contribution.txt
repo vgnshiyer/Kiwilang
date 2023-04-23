@@ -46,6 +46,7 @@ Week 3 (Apr 23 - Apr 28)
     - Added interpreter to kiwi language
     - Added evaluation logic for declaration
     - Added logic for increment expression
+    - Added boolean expression interpreter
 
 2. Naga Venkata Dharani Vishwanadh Chinta
     - Added interpreter for display predicate

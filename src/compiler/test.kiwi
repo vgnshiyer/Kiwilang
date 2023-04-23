@@ -7,6 +7,5 @@ fn fact : ( n ) {
     }
 }
 
-str x := "hello"
-x := "hello again"
+bool x := not true
 print x

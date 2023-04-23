@@ -22,6 +22,21 @@ class KiwiInterpreter(KiwiVisitor):
         var = None
         val = None
 
+    exprEval = {
+        '+' : lambda a, b: a + b,
+        '-' : lambda a, b: a - b,
+        '*' : lambda a, b: a * b,
+        '/' : lambda a, b: a / b,
+        '==' : lambda a, b: a == b,
+        '!=' : lambda a, b: a != b,
+        'and' : lambda a, b: a and b,
+        'or' : lambda a, b: a or b,
+        '>' : lambda a, b: a > b,
+        '<' : lambda a, b: a < b,
+        '<=' : lambda a, b: a <= b,
+        '>=' : lambda a, b: a >= b
+    }
+
     # Visit a parse tree produced by KiwiParser#program.
     def visitProgram(self, ctx:KiwiParser.ProgramContext):
         self.env = {}
@@ -40,7 +55,6 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#declaration.
     def visitDeclaration(self, ctx:KiwiParser.DeclarationContext):
-        
         children = ctx.children
         if len(children) == 4:
             vartype = children[0].getText()
@@ -110,9 +124,33 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#booleanExpr.
     def visitBooleanExpr(self, ctx:KiwiParser.BooleanExprContext):
-        if(DEBUG_LEVEL):
-            print('visitBoolean: ')
-            print(ctx)
+        children = ctx.children
+        if len(children) == 1:
+            if children[0].getText() == 'true':
+                return True
+            elif children[0].getText() == 'false':
+                return False
+            elif children[0].getSymbol().type == KiwiParser.ID:
+                return self.lookup(children[1].getText())
+            else:
+                return self.visit(children)
+        elif len(children) == 2:
+            if children[1].getText() == 'true':
+                return False
+            elif children[1].getText() == 'false':
+                return True
+            elif children[1].getSymbol().type == KiwiParser.ID:
+                return not self.lookup(children[1].getText())
+        if len(children) == 3:
+            if children[0].getText() == '(':
+                return self.visit(children[1])
+
+            op1 = self.visit(children[0])
+            opr = children[1].getText()
+            op2 = self.visit(children[2])
+
+            if opr in self.exprEval:
+                return self.exprEval[opr](op1, op2)
         return self.visitChildren(ctx)
 
 
