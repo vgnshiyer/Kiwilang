@@ -1,3 +1,9 @@
+'''
+Author: Vignesh Iyer, Dharani Chinta
+Version: 1
+Date: April 23th 2023
+'''
+
 from antlr4 import *
 
 from lexer_and_parser.KiwiParser import KiwiParser
