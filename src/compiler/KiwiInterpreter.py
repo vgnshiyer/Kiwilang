@@ -26,7 +26,7 @@ class KiwiInterpreter(KiwiVisitor):
         '+' : lambda a, b: a + b,
         '-' : lambda a, b: a - b,
         '*' : lambda a, b: a * b,
-        '/' : lambda a, b: a / b,
+        '/' : lambda a, b: a // b,
         '==' : lambda a, b: a == b,
         '!=' : lambda a, b: a != b,
         'and' : lambda a, b: a and b,
@@ -36,6 +36,34 @@ class KiwiInterpreter(KiwiVisitor):
         '<=' : lambda a, b: a <= b,
         '>=' : lambda a, b: a >= b
     }
+
+    def printEnv(self):
+        for v in self.env.values():
+            print('-'*50)
+            print(v.vartype)
+            print(v.var)
+            print(v.val)
+        print('-'*50)
+    
+    def updateEnv(self,var,val,vartype):
+        if var in self.env:
+            variable = self.env[var]
+            if(variable.vartype != str(type(val).__name__)):
+                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val)), var, vartype))
+            else:
+                variable.val = val
+        else:
+            if(vartype != type(val).__name__ and val != None):
+                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val)), var, vartype))
+            newvar = self.variable()
+            newvar.var = var
+            newvar.val = val
+            newvar.vartype = vartype
+            self.env[var] = newvar
+
+    def lookup(self, varname):
+        if varname in self.env:
+            return self.env[varname].val
 
     # Visit a parse tree produced by KiwiParser#program.
     def visitProgram(self, ctx:KiwiParser.ProgramContext):
@@ -119,6 +147,34 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#arithmeticExpr.
     def visitArithmeticExpr(self, ctx:KiwiParser.ArithmeticExprContext):
+        children = ctx.children
+        if len(children) == 1:
+            if children[0].getSymbol().type == KiwiParser.DIGIT:
+                return int(children[0].getText())
+            elif children[0].getSymbol().type == KiwiParser.ID:
+                return self.lookup(children[0].getText())
+        elif len(children) == 2:
+            if children[0].getSymbol().type == KiwiParser.SUB:
+                if children[1].getSymbol().type == KiwiParser.DIGIT:
+                    val = 0 - int(children[1].getText())
+                    return val
+                elif children[1].getSymbol().type == KiwiParser.ID:
+                    val = self.lookup(children[1].getText())
+                    if type(val).__name__ != 'int':
+                        raise Exception('Invalid operand used: val of type {} cannot be negated'.format(type(val).__name__))
+                    return 0 - val
+            else:
+                raise Exception('Invalid operand')
+        elif len(children) == 3:
+            if children[0].getText() == '(':
+                return self.visit(children[1])
+
+            op1 = self.visit(children[0])
+            op2 = self.visit(children[2])
+            op = children[1].getText()
+
+            if op in self.exprEval:
+                return self.exprEval[op](op1, op2)
         return self.visitChildren(ctx)
 
 
@@ -131,7 +187,7 @@ class KiwiInterpreter(KiwiVisitor):
             elif children[0].getText() == 'false':
                 return False
             elif children[0].getSymbol().type == KiwiParser.ID:
-                return self.lookup(children[1].getText())
+                return self.lookup(children[0].getText())
             else:
                 return self.visit(children)
         elif len(children) == 2:
@@ -141,16 +197,16 @@ class KiwiInterpreter(KiwiVisitor):
                 return True
             elif children[1].getSymbol().type == KiwiParser.ID:
                 return not self.lookup(children[1].getText())
-        if len(children) == 3:
+        elif len(children) == 3:
             if children[0].getText() == '(':
                 return self.visit(children[1])
 
             op1 = self.visit(children[0])
-            opr = children[1].getText()
+            op = children[1].getText()
             op2 = self.visit(children[2])
 
-            if opr in self.exprEval:
-                return self.exprEval[opr](op1, op2)
+            if op in self.exprEval:
+                return self.exprEval[op](op1, op2)
         return self.visitChildren(ctx)
 
 
@@ -199,7 +255,6 @@ class KiwiInterpreter(KiwiVisitor):
         return self.visitChildren(ctx)
 
 
-
     # Visit a parse tree produced by KiwiParser#function.
     def visitFunction(self, ctx:KiwiParser.FunctionContext):
         if(DEBUG_LEVEL): print(ctx)
@@ -226,27 +281,3 @@ class KiwiInterpreter(KiwiVisitor):
     # Visit a parse tree produced by KiwiParser#stringExpr.
     def visitStringExpr(self, ctx:KiwiParser.StringExprContext):
         return str(ctx.getText().replace('"',''))
-
-    def printEnv(self):
-        for v in self.env.values():
-            print('-'*50)
-            print(v.vartype)
-            print(v.var)
-            print(v.val)
-        print('-'*50)
-    
-    def updateEnv(self,var,val,vartype):
-        if var in self.env:
-            variable = self.env[var]
-            if(variable.vartype != str(type(val).__name__)):
-                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val)), var, vartype))
-            else:
-                variable.val = val
-        else:
-            if(vartype != type(val).__name__ and val != None):
-                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val)), var, vartype))
-            newvar = self.variable()
-            newvar.var = var
-            newvar.val = val
-            newvar.vartype = vartype
-            self.env[var] = newvar
