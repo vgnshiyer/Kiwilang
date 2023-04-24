@@ -1,11 +1,13 @@
-fn fact : ( n ) {
-    if n == 0 {
-        give 1
-    }
-    else {
-        give n * fact (n - 1)
-    }
-}
+//fn fact : ( n ) {
+//    if n == 0 {
+//        give 1
+//    }
+//    else {
+//        give n * fact (n - 1)
+//    }
+//}
 
-bool x := not true
+int a := 1
+int b := 2
+bool x := a >= b
 print x
