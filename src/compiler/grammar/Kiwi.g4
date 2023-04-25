@@ -74,7 +74,7 @@ whileExpr
         ;
 
 forExpr
-        : 'for' '(' declaration ';' booleanExpr ';' (declaration|incrementExpr) ')'
+        : 'for' '(' declaration ';' booleanExpr ';' (declaration|incrementExpr) ')' '{' block '}'
         ;
 
 specialForExpr
