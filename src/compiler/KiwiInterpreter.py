@@ -110,7 +110,6 @@ class KiwiInterpreter(KiwiVisitor):
     # Visit a parse tree produced by KiwiParser#incrementExpr.
     def visitIncrementExpr(self, ctx:KiwiParser.IncrementExprContext):
         children = ctx.children
-        print(children)
         if len(children) == 2:
             var = children[0].getText()
             if(var in self.env):
@@ -121,12 +120,12 @@ class KiwiInterpreter(KiwiVisitor):
                         variable.val += 1
                     elif(op == '--'):
                         variable.val -= 1
-                    updateEnv(variable.var, variable.val, variable.vartype)
+                    self.updateEnv(variable.var, variable.val, variable.vartype)
                 else: raise Exception('Invalid datatype for operation: Cannot perform arithmetic operations on type {}'.format(variable.vartype))
             else:
                 raise Exception('Variable not present: variable {} is not defined'.format(var))
 
-        elif len(children) == 3:
+        elif len(children) == 4:
             var = children[0].getText()
 
             if(var in self.env):
@@ -139,7 +138,7 @@ class KiwiInterpreter(KiwiVisitor):
                         variable.val += 1
                     elif op == '-':
                         variable.val -= 1
-                    updateEnv(variable.var, variable.val, variable.vartype)
+                    self.updateEnv(variable.var, variable.val, variable.vartype)
                 else: raise Exception('Invalid datatype for operation: Cannot perform arithmetic operations on type {}'.format(variable.vartype))
             else:
                 raise Exception('Variable not present: variable {} is not defined'.format(var))
@@ -252,8 +251,11 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#whileExpr.
     def visitWhileExpr(self, ctx:KiwiParser.WhileExprContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
+        children = ctx.children
+        boolExpression = children[1]
+        block = children[3]
+        while(self.visit(boolExpression)):
+            self.visit(block)
 
 
     # Visit a parse tree produced by KiwiParser#forExpr.

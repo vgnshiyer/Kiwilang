@@ -31,7 +31,7 @@ declaration
 incrementExpr
         : ID '++'
         | ID '--'
-        | ID operator=(ADD|SUB|MUL|DIV) ASSIGN arithmeticExpr
+        | ID operator=(ADD|SUB|MUL|DIV) '=' arithmeticExpr
         ;
 
 arithmeticExpr
