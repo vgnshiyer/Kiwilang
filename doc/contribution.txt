@@ -15,8 +15,8 @@ Week 1 (Apr 9 - Apr 11)
     - Added description for language, lexical analyzer.
 
 2. Naga Venkata Dharani Chinta
-    - Added information about Interpreter component in Specification document
-    - Added a flow diagram about lexer, parser, interpreter of our programming language
+    - Added information about semantics component in Specification document
+    - Added a flow diagram about lexer, parser, semantics of our programming language
 
 3. Sri Harsha Gajavalli
     - Researched on how to make tokenizers with python language
@@ -27,11 +27,11 @@ Week 1 (Apr 9 - Apr 11)
     - Added description for parser
 
 5. Anish Unnikrishnan Nair
-    - Researched on python libraries to use for tokenizer and interpreter
+    - Researched on python libraries to use for tokenizer and semantics
 
 Contribution plan for milestone 2
 
-We plan to divide task among five members for creating different components of the system. Five people will take one component from lexer, parser, interpreter, documentation, writing sample programs. 
+We plan to divide task among five members for creating different components of the system. Five people will take one component from lexer, parser, semantics, documentation, writing sample programs. 
 
 Week 2 (Apr 16 - Apr 22)
 1. Vignesh Venkatachalam Iyer
@@ -43,13 +43,17 @@ Week 2 (Apr 16 - Apr 22)
     
 Week 3 (Apr 23 - Apr 28)
 1. Vignesh Venkatachalam Iyer
-    - Added interpreter to kiwi language
+    - Added semantics to kiwi language
     - Added evaluation logic for declaration
     - Added logic for increment expression
-    - Added boolean expression interpreter
-    - Added interpreter for arithmetic expression
+    - Added boolean expression semantics
+    - Added semantics for arithmetic expression
+    - Added semantics for if else expression
+    - Added semantics for `for expression`
+    - Added semantics for while expression
+    - Added semantics for special for expression
 
 2. Naga Venkata Dharani Vishwanadh Chinta
-    - Added interpreter for display predicate
+    - Added semantics for display predicate
     - Refactored structure
     - Added methods for update environment
