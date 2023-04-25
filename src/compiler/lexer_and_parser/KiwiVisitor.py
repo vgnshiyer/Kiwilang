@@ -44,6 +44,11 @@ class KiwiVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by KiwiParser#condExpr.
+    def visitCondExpr(self, ctx:KiwiParser.CondExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by KiwiParser#ifExpr.
     def visitIfExpr(self, ctx:KiwiParser.IfExprContext):
         return self.visitChildren(ctx)
@@ -51,6 +56,11 @@ class KiwiVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by KiwiParser#elseIfExpr.
     def visitElseIfExpr(self, ctx:KiwiParser.ElseIfExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by KiwiParser#elseExpr.
+    def visitElseExpr(self, ctx:KiwiParser.ElseExprContext):
         return self.visitChildren(ctx)
 
 

@@ -64,6 +64,8 @@ class KiwiInterpreter(KiwiVisitor):
     def lookup(self, varname):
         if varname in self.env:
             return self.env[varname].val
+        else:
+            raise Exception('Variable not present: Variable {} does not exist'.format(varname))
 
     # Visit a parse tree produced by KiwiParser#program.
     def visitProgram(self, ctx:KiwiParser.ProgramContext):
@@ -149,7 +151,9 @@ class KiwiInterpreter(KiwiVisitor):
     def visitArithmeticExpr(self, ctx:KiwiParser.ArithmeticExprContext):
         children = ctx.children
         if len(children) == 1:
-            if children[0].getSymbol().type == KiwiParser.DIGIT:
+            if children[0].getText() == 'functionCall':
+                pass # handle later
+            elif children[0].getSymbol().type == KiwiParser.DIGIT:
                 return int(children[0].getText())
             elif children[0].getSymbol().type == KiwiParser.ID:
                 return self.lookup(children[0].getText())
@@ -210,16 +214,41 @@ class KiwiInterpreter(KiwiVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by KiwiParser#condExpr.
+    def visitCondExpr(self, ctx:KiwiParser.CondExprContext):
+        children = ctx.children
+        if self.visit(children[0]):
+            return
+        i = 1
+        while(i < len(children) and isinstance(children[i], KiwiParser.ElseIfExprContext)):
+            res = self.visit(children[i])
+            i += 1
+            if(res == True): return
+        
+        if(i < len(children)):
+            self.visit(children[i])
+
     # Visit a parse tree produced by KiwiParser#ifExpr.
     def visitIfExpr(self, ctx:KiwiParser.IfExprContext):
-        return self.visitChildren(ctx)
-
+        children = ctx.children
+        if(self.visit(children[1])):
+            self.visit(children[3])
+            return True
+        return False
+        
 
     # Visit a parse tree produced by KiwiParser#elseIfExpr.
     def visitElseIfExpr(self, ctx:KiwiParser.ElseIfExprContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
+        children = ctx.children
+        if(self.visit(children[1])):
+            self.visit(children[3])
+            return True
+        return False
 
+    # Visit a parse tree produced by KiwiParser#elseExpr.
+    def visitElseExpr(self, ctx:KiwiParser.ElseExprContext):
+        children = ctx.children
+        self.visit(children[2])
 
     # Visit a parse tree produced by KiwiParser#whileExpr.
     def visitWhileExpr(self, ctx:KiwiParser.WhileExprContext):

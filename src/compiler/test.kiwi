@@ -7,7 +7,17 @@
 //    }
 //}
 
+int x := 15
 int a := 1
 int b := 2
-bool x := a >= b
-print x
+int c := 3
+int d := 4
+if x == 5 {
+    print a
+} else if x == 10 {
+    print b
+} else if  x == 15 {
+    print c
+} else {
+    print d
+}
