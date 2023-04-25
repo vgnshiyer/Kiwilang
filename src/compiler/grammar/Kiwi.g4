@@ -16,7 +16,7 @@ block
         ;
 
 statement
-        : (declaration|incrementExpr|ifExpr|whileExpr|forExpr|specialForExpr|display|function|give|functionCall)
+        : (declaration|incrementExpr|condExpr|whileExpr|forExpr|specialForExpr|display|function|give|functionCall)
         ;
 
 declaration
@@ -53,12 +53,20 @@ booleanExpr
         | (NOT)? ID
         ;
 
+condExpr
+        : ifExpr (elseIfExpr)* (elseExpr)?
+        ;
+
 ifExpr
-        : 'if' booleanExpr '{' block '}' (elseIfExpr)* ('else' '{' block '}')?
+        : 'if' booleanExpr '{' block '}'
         ;
 
 elseIfExpr
         : 'else if' booleanExpr '{' block '}'
+        ;
+
+elseExpr
+        : 'else' '{' block '}'
         ;
 
 whileExpr

@@ -71,6 +71,15 @@ class KiwiListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by KiwiParser#condExpr.
+    def enterCondExpr(self, ctx:KiwiParser.CondExprContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#condExpr.
+    def exitCondExpr(self, ctx:KiwiParser.CondExprContext):
+        pass
+
+
     # Enter a parse tree produced by KiwiParser#ifExpr.
     def enterIfExpr(self, ctx:KiwiParser.IfExprContext):
         pass
@@ -86,6 +95,15 @@ class KiwiListener(ParseTreeListener):
 
     # Exit a parse tree produced by KiwiParser#elseIfExpr.
     def exitElseIfExpr(self, ctx:KiwiParser.ElseIfExprContext):
+        pass
+
+
+    # Enter a parse tree produced by KiwiParser#elseExpr.
+    def enterElseExpr(self, ctx:KiwiParser.ElseExprContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#elseExpr.
+    def exitElseExpr(self, ctx:KiwiParser.ElseExprContext):
         pass
 
 
