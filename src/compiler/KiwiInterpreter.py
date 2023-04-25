@@ -4,6 +4,9 @@ Version: 1
 Date: April 23th 2023
 '''
 
+# references: https://dev.to/taw/100-languages-speedrun-episode-74-python-antlr-4-234l
+#             https://codereview.stackexchange.com/questions/280439/interpreter-for-a-python-like-language-antlr-and-python
+
 from antlr4 import *
 
 from lexer_and_parser.KiwiParser import KiwiParser
@@ -132,12 +135,16 @@ class KiwiInterpreter(KiwiVisitor):
                 variable = self.env[var]
                 if(variable.vartype == 'int'):
                     op = children[1].getText()
-                    val = self.visit(children[2])
+                    val = self.visit(children[3])
                     
                     if op == '+':
-                        variable.val += 1
+                        variable.val += val
                     elif op == '-':
-                        variable.val -= 1
+                        variable.val -= val
+                    elif op == '*':
+                        variable.val *= val
+                    elif op == '/':
+                        variable.val //= val 
                     self.updateEnv(variable.var, variable.val, variable.vartype)
                 else: raise Exception('Invalid datatype for operation: Cannot perform arithmetic operations on type {}'.format(variable.vartype))
             else:
@@ -260,9 +267,16 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#forExpr.
     def visitForExpr(self, ctx:KiwiParser.ForExprContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
+        children = ctx.children
+        declaration = children[2]
+        boolExpression = children[4]
+        expression = children[6]
+        block = children[9]
 
+        self.visit(declaration)
+        while(self.visit(boolExpression)):
+            self.visit(block)
+            self.visit(expression)
 
     # Visit a parse tree produced by KiwiParser#specialForExpr.
     def visitSpecialForExpr(self, ctx:KiwiParser.SpecialForExprContext):
