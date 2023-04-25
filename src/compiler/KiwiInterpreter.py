@@ -280,8 +280,26 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#specialForExpr.
     def visitSpecialForExpr(self, ctx:KiwiParser.SpecialForExprContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
+        children = ctx.children
+        if len(children) == 10:
+            declaration = children[1]
+            end = int(children[5].getText())
+            var = declaration.getText()
+            block = children[8]
+
+            for i in range(end):
+                self.updateEnv(var, i, 'int')
+                self.visit(block)
+        elif len(children) == 12:
+            declaration = children[1]
+            start = int(children[5].getText())
+            end = int(children[7].getText())
+            var = declaration.getText()
+            block = children[10]
+
+            for i in range(start, end):
+                self.updateEnv(var, i, 'int')
+                self.visit(block)
 
     # Visit a parse tree produced by KiwiParser#display.
     def visitDisplay(self, ctx:KiwiParser.DisplayContext):

@@ -78,7 +78,7 @@ forExpr
         ;
 
 specialForExpr
-        : ('for' ID 'in' 'range' '(' DIGIT ')'|'for' ID 'in' 'range' '(' DIGIT ',' DIGIT ')')
+        : ('for' ID 'in' 'range' '(' DIGIT ')'|'for' ID 'in' 'range' '(' DIGIT ',' DIGIT ')') '{' block '}'
         ;
 
 display
