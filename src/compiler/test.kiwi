@@ -10,16 +10,6 @@
 
 int a := 0
 int b := 1
-int c
 
-print a
-print b
-
-c := a + b
-for(int i := 0; i <= 8; i++) {
-
-    print c
-    a := b
-    b := c
-    c := a + b
-}
+x := a == 0 ? a : b
+print x

@@ -26,6 +26,7 @@ declaration
         | ID ASSIGN arithmeticExpr 
         | ID ASSIGN booleanExpr
         | ID ASSIGN stringExpr
+        | ID ASSIGN ternaryOperation
         ;
 
 incrementExpr
@@ -67,6 +68,10 @@ elseIfExpr
 
 elseExpr
         : 'else' '{' block '}'
+        ;
+
+ternaryOperation
+        : booleanExpr '?' (arithmeticExpr|booleanExpr) ':' (arithmeticExpr|booleanExpr)
         ;
 
 whileExpr

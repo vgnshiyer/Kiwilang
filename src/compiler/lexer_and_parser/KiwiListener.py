@@ -107,6 +107,15 @@ class KiwiListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by KiwiParser#ternaryOperation.
+    def enterTernaryOperation(self, ctx:KiwiParser.TernaryOperationContext):
+        pass
+
+    # Exit a parse tree produced by KiwiParser#ternaryOperation.
+    def exitTernaryOperation(self, ctx:KiwiParser.TernaryOperationContext):
+        pass
+
+
     # Enter a parse tree produced by KiwiParser#whileExpr.
     def enterWhileExpr(self, ctx:KiwiParser.WhileExprContext):
         pass

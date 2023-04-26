@@ -256,6 +256,17 @@ class KiwiInterpreter(KiwiVisitor):
         children = ctx.children
         self.visit(children[2])
 
+    # Visit a parse tree produced by KiwiParser#ternaryOperation.
+    def visitTernaryOperation(self, ctx:KiwiParser.TernaryOperationContext):
+        children = ctx.children
+        booleanExpr = children[0]
+        expr1 = children[2]
+        expr2 = children[4]
+        if(self.visit(booleanExpr)):
+            return self.visit(expr1)
+        else:
+            return self.visit(expr2)
+
     # Visit a parse tree produced by KiwiParser#whileExpr.
     def visitWhileExpr(self, ctx:KiwiParser.WhileExprContext):
         children = ctx.children
@@ -263,7 +274,6 @@ class KiwiInterpreter(KiwiVisitor):
         block = children[3]
         while(self.visit(boolExpression)):
             self.visit(block)
-
 
     # Visit a parse tree produced by KiwiParser#forExpr.
     def visitForExpr(self, ctx:KiwiParser.ForExprContext):
