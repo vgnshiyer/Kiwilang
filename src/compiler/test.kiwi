@@ -12,3 +12,6 @@ int x := 1
 for i in range(1,10) {
     print i
 }
+
+int x := 2
+print (5+3)*8

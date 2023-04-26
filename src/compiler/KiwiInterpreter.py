@@ -306,16 +306,29 @@ class KiwiInterpreter(KiwiVisitor):
         if(DEBUG_LEVEL): print(ctx)
         children = ctx.children
         if len(children)==2:
-            var = children[1].getText()
-            if(var in self.env):
-                varVal = self.env[var].val
-                print(varVal)
-            else:
-                raise Exception('Variable not present: variable {} is not defined'.format(var))
+            try:
+                childrenType = children[1].getSymbol().type
+                # print(childrenType)
+                if childrenType==KiwiParser.ID:
+                    var = children[1].getText()
+                    if(var in self.env):
+                        varVal = self.env[var].val
+                        print(varVal)
+                    else:
+                        raise Exception('Variable not present: variable {} is not defined'.format(var))
+                else:
+                    literalVal = children[1].getText()
+                    print(literalVal)
+            except:
+                arithExpr = self.visitChildren(ctx)
+                print(arithExpr)
+                return arithExpr
+
         else:
             raise Exception('print accepts only one argument.')
-        
-        return self.visitChildren(ctx)
+
+        output = self.visitChildren(ctx)
+        return output
 
 
     # Visit a parse tree produced by KiwiParser#function.
