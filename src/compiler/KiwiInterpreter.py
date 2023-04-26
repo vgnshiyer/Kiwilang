@@ -52,12 +52,12 @@ class KiwiInterpreter(KiwiVisitor):
         if var in self.env:
             variable = self.env[var]
             if(variable.vartype != str(type(val).__name__)):
-                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val)), var, vartype))
+                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val).__name__), var, variable.vartype))
             else:
                 variable.val = val
         else:
             if(vartype != type(val).__name__ and val != None):
-                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val)), var, vartype))
+                raise Exception('Invalid type assigned: {} of type {} cannot be assigned to {} of type {}'.format(val, str(type(val).__name__), var, vartype))
             newvar = self.variable()
             newvar.var = var
             newvar.val = val
@@ -308,7 +308,6 @@ class KiwiInterpreter(KiwiVisitor):
         if len(children)==2:
             try:
                 childrenType = children[1].getSymbol().type
-                # print(childrenType)
                 if childrenType==KiwiParser.ID:
                     var = children[1].getText()
                     if(var in self.env):
@@ -322,8 +321,6 @@ class KiwiInterpreter(KiwiVisitor):
             except:
                 arithExpr = self.visitChildren(ctx)
                 print(arithExpr)
-                return arithExpr
-
         else:
             raise Exception('print accepts only one argument.')
 
