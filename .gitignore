@@ -1,0 +1,6 @@
+/venv
+src/compiler/__pycache__/KiwiInterpreter.cpython-39.pyc
+src/compiler/lexer_and_parser/__pycache__/KiwiLexer.cpython-39.pyc
+src/compiler/lexer_and_parser/__pycache__/KiwiListener.cpython-39.pyc
+src/compiler/lexer_and_parser/__pycache__/KiwiParser.cpython-39.pyc
+src/compiler/lexer_and_parser/__pycache__/KiwiVisitor.cpython-39.pyc
