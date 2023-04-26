@@ -64,6 +64,11 @@ class KiwiVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by KiwiParser#ternaryOperation.
+    def visitTernaryOperation(self, ctx:KiwiParser.TernaryOperationContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by KiwiParser#whileExpr.
     def visitWhileExpr(self, ctx:KiwiParser.WhileExprContext):
         return self.visitChildren(ctx)
