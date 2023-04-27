@@ -6,6 +6,8 @@ Date: April 20th 2023
 
 # reference: https://jason.whitehorn.us/blog/2021/02/08/getting-started-with-antlr-for-python/
 import sys
+sys.path.append('../compiler')
+
 from antlr4 import *
 from antlr4.tree.Trees import Trees
 from antlr4.InputStream import InputStream
