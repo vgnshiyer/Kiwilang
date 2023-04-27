@@ -160,12 +160,13 @@ class KiwiInterpreter(KiwiVisitor):
     def visitArithmeticExpr(self, ctx:KiwiParser.ArithmeticExprContext):
         children = ctx.children
         if len(children) == 1:
-            if children[0].getText() == 'functionCall':
-                pass # handle later
-            elif children[0].getSymbol().type == KiwiParser.DIGIT:
-                return int(children[0].getText())
-            elif children[0].getSymbol().type == KiwiParser.ID:
-                return self.lookup(children[0].getText())
+            try:
+                if children[0].getSymbol().type == KiwiParser.DIGIT:
+                    return int(children[0].getText())
+                elif children[0].getSymbol().type == KiwiParser.ID:
+                    return self.lookup(children[0].getText())
+            except:
+                return self.visit(children[0])
         elif len(children) == 2:
             if children[0].getSymbol().type == KiwiParser.SUB:
                 if children[1].getSymbol().type == KiwiParser.DIGIT:
@@ -245,7 +246,6 @@ class KiwiInterpreter(KiwiVisitor):
             return True
         return False
         
-
     # Visit a parse tree produced by KiwiParser#elseIfExpr.
     def visitElseIfExpr(self, ctx:KiwiParser.ElseIfExprContext):
         children = ctx.children
@@ -353,9 +353,8 @@ class KiwiInterpreter(KiwiVisitor):
     def visitFunctionParams(self, ctx:KiwiParser.FunctionParamsContext):
         children = ctx.children
         params = []
-        children.pop(-1)
         for param in children[1:]:
-            if param.getText() == ',': continue
+            if param.getText() in [',','(',')']: continue
             params.append(param.getText())
         return params
 
@@ -363,11 +362,10 @@ class KiwiInterpreter(KiwiVisitor):
     def visitParams(self, ctx:KiwiParser.ParamsContext):
         children = ctx.children
         params = []
-        children.pop(-1)
         for param in children[1:]:
-            if param.getText() == ',': continue
+            if param.getText() in [',','(',')']: continue
             params.append(self.visit(param))
-        return param
+        return params
 
     # Visit a parse tree produced by KiwiParser#give.
     def visitGive(self, ctx:KiwiParser.GiveContext):
@@ -381,8 +379,35 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#functionCall.
     def visitFunctionCall(self, ctx:KiwiParser.FunctionCallContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
+        children = ctx.children
+        functionName = children[0].getText()
+        if functionName not in self.functions:
+            raise Exception('Function definition not found: Function `{}` not defined in current scope'.format(functionName))
+
+        functionParams = self.functions[functionName]['params']
+        inputParams = self.visit(children[1])
+        print(inputParams)
+        if len(functionParams) != len(inputParams):
+            raise Exception('Invalid number of arguments passed: expected {}, found {}'.format(len(functionParams), len(inputParams)))
+
+        def addVarInFunctionScope(varname, vartype, val, env):
+            v = self.variable()
+            v.var = varname
+            v.vartype = vartype
+            v.val = val
+            env[varname] = v
+        
+        functionScope = KiwiInterpreter()
+        functionScope.env = {}
+        functionScope.functions = {}
+        functionScope.functions[functionName] = self.functions[functionName]
+
+        for varname, val in zip(functionParams, inputParams):
+            addVarInFunctionScope(varname, str(type(val).__name__), val, functionScope.env)
+
+        functionBlock = self.functions[functionName]['block']
+        result = functionScope.visit(functionBlock)
+        return result
 
     # Visit a parse tree produced by KiwiParser#stringExpr.
     def visitStringExpr(self, ctx:KiwiParser.StringExprContext):

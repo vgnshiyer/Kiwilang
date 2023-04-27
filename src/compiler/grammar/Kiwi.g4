@@ -95,7 +95,7 @@ function
         ;
 
 functionParams
-        : '(' ID (',' ID)* ')'
+        : '(' ID? (',' ID)* ')'
         ;
 
 params
