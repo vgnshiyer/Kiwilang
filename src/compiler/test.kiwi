@@ -1,15 +1,11 @@
-fn fact : ( n, n2 ) { }
-//    if n == 0 {
-//        give 1
-//    }
-//    else {
-//        give n * fact (n - 1)
-//    }
-//}
+fn fact : ( n ) {
+    if n == 0 {
+        give 1
+    }
+    else {
+        give n * fact (n - 1)
+    }
+}
 
 
-int a := 0
-int b := 1
-
-x := a == 0 ? a : b
-print x
+print fact(3)
