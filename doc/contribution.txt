@@ -52,8 +52,10 @@ Week 3 (Apr 23 - Apr 28)
     - Added semantics for `for expression`
     - Added semantics for while expression
     - Added semantics for special for expression
+    - Added interpreter for functionCall
 
 2. Naga Venkata Dharani Vishwanadh Chinta
     - Added semantics for display predicate
     - Refactored structure
     - Added methods for update environment
+    - Added interpreter for functionCall
