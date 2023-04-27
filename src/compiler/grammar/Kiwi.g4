@@ -91,7 +91,11 @@ display
         ;
 
 function
-        : 'fn' ID ':' params '{' block '}'
+        : 'fn' ID ':' functionParams '{' block '}'
+        ;
+
+functionParams
+        : '(' ID (',' ID)* ')'
         ;
 
 params
@@ -100,7 +104,7 @@ params
         ;
 
 give
-        : 'give' (ID|BOOL|STRING|arithmeticExpr|booleanExpr|functionCall)
+        : 'give' (ID|BOOL|stringExpr|arithmeticExpr|booleanExpr|functionCall)
         ;
 
 functionCall
