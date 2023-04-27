@@ -14,15 +14,31 @@ Windows
 Linux
 ```
 
-The requirements are :
+**The requirements are :**
 
     1. Python version 3.7 or higher
-    2. ANTLR
+    2. ANTLR4
 
-<-- Directions to install (to be added) -->
+**Directions to install**
 
-<-- Directions to build/run (to be added) -->
+*Install requirements*
+```
+pip3 install -r requirements.txt
+```
+Note: Use pip if you do not have pip3 in your path
 
-<-- One line bash script (to be added) -->
+**Directions to build/run**
+
+*Set alias for kiwi language*
+```
+alias kiwi='python3 ./src/interpreter/KiwiEvaluator.py'
+```
+
+**One line command**
+
+*Run a kiwi file*
+```
+kiwi data/helloworld.kiwi
+```
 
 <-- Youtube link (to be added) -->
