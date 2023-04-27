@@ -1,4 +1,4 @@
-//fn fact : ( n ) {
+fn fact : ( n, n2 ) { }
 //    if n == 0 {
 //        give 1
 //    }

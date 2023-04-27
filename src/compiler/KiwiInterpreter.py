@@ -19,11 +19,13 @@ DEBUG_LEVEL = False
 class KiwiInterpreter(KiwiVisitor):
 
     env = None
+    functions = None
 
     class variable:
         vartype = None
         var = None
         val = None
+
 
     exprEval = {
         '+' : lambda a, b: a + b,
@@ -73,6 +75,7 @@ class KiwiInterpreter(KiwiVisitor):
     # Visit a parse tree produced by KiwiParser#program.
     def visitProgram(self, ctx:KiwiParser.ProgramContext):
         self.env = {}
+        self.functions = {}
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by KiwiParser#block.
@@ -340,21 +343,41 @@ class KiwiInterpreter(KiwiVisitor):
 
     # Visit a parse tree produced by KiwiParser#function.
     def visitFunction(self, ctx:KiwiParser.FunctionContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
+        children = ctx.children
+        functionName = children[1].getText()
+        params = self.visitFunctionParams(children[3])
+        functionBlock = children[5]
+        self.functions[functionName] = {'params' : params, 'block' : functionBlock}
+        if DEBUG_LEVEL: print(self.functions)
 
+    def visitFunctionParams(self, ctx:KiwiParser.FunctionParamsContext):
+        children = ctx.children
+        params = []
+        children.pop(-1)
+        for param in children[1:]:
+            if param.getText() == ',': continue
+            params.append(param.getText())
+        return params
 
     # Visit a parse tree produced by KiwiParser#params.
     def visitParams(self, ctx:KiwiParser.ParamsContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
-
+        children = ctx.children
+        params = []
+        children.pop(-1)
+        for param in children[1:]:
+            if param.getText() == ',': continue
+            params.append(self.visit(param))
+        return param
 
     # Visit a parse tree produced by KiwiParser#give.
     def visitGive(self, ctx:KiwiParser.GiveContext):
-        if(DEBUG_LEVEL): print(ctx)
-        return self.visitChildren(ctx)
-
+        children = ctx.children
+        try:
+            if children[1].getSymbol().type == KiwiParser.ID or children[1].getSymbol().type == KiwiParser.BOOL:
+                return self.lookup(children[1].getText())
+        except:
+            return self.visit(children[1])
+                
 
     # Visit a parse tree produced by KiwiParser#functionCall.
     def visitFunctionCall(self, ctx:KiwiParser.FunctionCallContext):
