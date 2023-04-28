@@ -325,15 +325,19 @@ class KiwiInterpreter(KiwiVisitor):
                     var = children[1].getText()
                     if(var in self.env):
                         varVal = self.env[var].val
-                        print(varVal)
+                        print(varVal, end='')
                     else:
                         raise Exception('Variable not present: variable {} is not defined'.format(var))
+                elif childrenType == KiwiParser.NL:
+                    print()
+                elif childrenType == KiwiParser.STRING:
+                    print(children[1].getText().replace('"',''),end='')
                 else:
                     literalVal = children[1].getText()
-                    print(literalVal)
+                    print(literalVal, end='')
             except:
                 arithExpr = self.visitChildren(ctx)
-                print(arithExpr)
+                print(arithExpr, end='')
         else:
             raise Exception('print accepts only one argument.')
 
@@ -386,7 +390,6 @@ class KiwiInterpreter(KiwiVisitor):
 
         functionParams = self.functions[functionName]['params']
         inputParams = self.visit(children[1])
-        print(inputParams)
         if len(functionParams) != len(inputParams):
             raise Exception('Invalid number of arguments passed: expected {}, found {}'.format(len(functionParams), len(inputParams)))
 
