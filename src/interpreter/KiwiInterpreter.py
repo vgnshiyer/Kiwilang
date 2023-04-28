@@ -375,8 +375,10 @@ class KiwiInterpreter(KiwiVisitor):
     def visitGive(self, ctx:KiwiParser.GiveContext):
         children = ctx.children
         try:
-            if children[1].getSymbol().type == KiwiParser.ID or children[1].getSymbol().type == KiwiParser.BOOL:
+            if children[1].getSymbol().type == KiwiParser.ID:
                 return self.lookup(children[1].getText())
+            elif children[1].getSymbol().type == KiwiParser.BOOL:
+                return children[1].getText()
         except:
             return self.visit(children[1])
                 
