@@ -1,7 +1,11 @@
-fn hollowDiamond : (n) {
+fn hollowDiamond : (k) {
+    int n:= (2*k)+1
+
+
     for (int i:=0; i<n;i++){
         for (int j:=0; j<n;j++){
-            if( ((i+j)==(n/2)) or ((j-i)==(n/2)) or ((i-j)==(n/2)) or ((i+j)==(n/2 + n -1))){
+            int jj := (2*(j/2))
+            if( ((i+j)==(n/2)) or ((j-i)==(n/2)) or ((i-j)==(n/2)) or ((i+j)==(n/2 + n -1)) or (i==k) or (j==k) ){
                 print "*"
             }else{
                 print " "
