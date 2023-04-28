@@ -1,10 +1,16 @@
 fn isprime : (n) {
+    bool fl := true
     for(int i:=2;i<n;i++){
-        if(i*(i/n)==i){
-            give false
+        if(i*(n/i)==n){
+            fl := false
         }
     }
-    give true
+    print n
+    if(fl==false){
+        print " is not a prime number."
+    }else{
+        print " is a prime number."
+    }
 }
 
-print isprime(3)
+isprime(17)
