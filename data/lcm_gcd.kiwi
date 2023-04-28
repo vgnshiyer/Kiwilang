@@ -1,0 +1,46 @@
+// function to print lcm of 2 non-zero numbers
+fn lcm : (a,b){
+    int mx := a
+    int mn := a
+    if(mx<b){
+        mx:=b
+    }
+    if(mn>b){
+        mn:=b
+    }
+
+    int lcm := mx
+    while((mn*(lcm/mn))!=lcm){
+        lcm := lcm+mx
+    }
+
+    give lcm
+}
+
+// function to print gcd of 2 non-zero numbers
+fn gcd : (a,b,l){
+    int g := ((a*b)/l)
+    give g
+}
+
+int a := 6
+int b := 10
+
+int l := lcm(a,b)
+int g := gcd(a,b,l)
+
+print "lcm of "
+print a
+print " and "
+print b
+print " = "
+print l
+
+print nl
+
+print "gcd of "
+print a
+print " and "
+print b
+print " = "
+print g
