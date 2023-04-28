@@ -16,7 +16,7 @@ from lexer_and_parser.KiwiParser import KiwiParser
 from lexer_and_parser.KiwiListener import KiwiListener
 from KiwiInterpreter import KiwiInterpreter
 
-DEBUG_LEVEL = True
+DEBUG_LEVEL = False
 
 def prepare():
     if len(sys.argv) > 1:

@@ -87,7 +87,7 @@ specialForExpr
         ;
 
 display
-        : 'print' (DIGIT|BOOL|ID|arithmeticExpr|booleanExpr|STRING)
+        : 'print' (DIGIT|BOOL|ID|arithmeticExpr|booleanExpr|STRING|NL)
         ;
 
 function
@@ -100,7 +100,7 @@ functionParams
 
 params
         : '()'
-        | '(' (arithmeticExpr|booleanExpr) (',' (arithmeticExpr|booleanExpr))* ')'
+        | '(' (arithmeticExpr|booleanExpr)? (',' (arithmeticExpr|booleanExpr))* ')'
         ;
 
 give
@@ -122,6 +122,10 @@ STRING
 DIGIT
         : [1-9] [0-9]*
         | '0'
+        ;
+
+NL
+        : 'nl'
         ;
 
 BOOL
