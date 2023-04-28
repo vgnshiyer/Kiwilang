@@ -1,19 +1,31 @@
 print "hello world"
 
-fn isprime : (n) {
-    for (int i:=2;i<n;i++){
-        if (i*(n/i)==n){
-            give false
-        }
+// sample code 1
+int gvar := 1
+
+for (int i:=1; i<6;i++){
+    for (int i:=1; i<6;i++){
+        print gvar
+        gvar++
     }
-    give true
+    print()
 }
 
-print(isprime(4))
-
-for (int i:=2;i<10;i++){
-    flag = isprime(i)
-    if(flag==true){
-        print(i)
-    }
-}
+// sample code 2
+//fn isprime : (n) {
+//    for (int i:=2;i<n;i++){
+//        if (i*(n/i)==n){
+//            give false
+//        }
+//    }
+//    give true
+//}
+//
+//print(isprime(4))
+//
+//for (int i:=2;i<10;i++){
+//    flag = isprime(i)
+//    if(flag==true){
+//        print(i)
+//    }
+//}
