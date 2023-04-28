@@ -95,12 +95,13 @@ function
         ;
 
 functionParams
-        : '(' ID? (',' ID)* ')'
+        : '()'
+        | '(' ID (',' ID)* ')'
         ;
 
 params
         : '()'
-        | '(' (arithmeticExpr|booleanExpr)? (',' (arithmeticExpr|booleanExpr))* ')'
+        | '(' (arithmeticExpr|booleanExpr) (',' (arithmeticExpr|booleanExpr))* ')'
         ;
 
 give
