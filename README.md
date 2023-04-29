@@ -41,6 +41,13 @@ alias kiwi='python3 ./src/interpreter/KiwiEvaluator.py'
 kiwi data/helloworld.kiwi
 ```
 
+**Note**
+
+If alias does not work on your system, run
+```
+python3 ./src/interpreter/KiwiEvaluator.py <filename>.kiwi
+```
+
 <-- Youtube link (to be added) -->
 
 **Note**
