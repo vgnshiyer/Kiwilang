@@ -59,6 +59,7 @@ Week 3 (Apr 23 - Apr 28)
     - Refactored structure
     - Added methods for update environment
     - Added interpreter for functionCall
+    - Added sample programs in kiwi language
  
  3. Sri Harsha Gajavalli
     - Researched on applying semantics to Antlr Visitor
