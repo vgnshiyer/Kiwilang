@@ -42,3 +42,11 @@ kiwi data/helloworld.kiwi
 ```
 
 <-- Youtube link (to be added) -->
+
+**Note**
+- We have implemented function declaration, function call for the language
+    - Recursive functions are not working as of now in the current version. Any recursive function that you write will return a Null object.
+- The grammar in the actual project may not be exactly equal to the grammar specified in milestone 1. 
+    - We made some concious decisions with changing the grammar for the language as it felt feasible while implementing
+    - However, the main objective of having a simple minimalistic language still holds true.
+- This language does not have a compiler and a runtime. It is an interpreted language.
