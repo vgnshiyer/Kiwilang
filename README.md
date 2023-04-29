@@ -41,7 +41,16 @@ alias kiwi='python3 ./src/interpreter/KiwiEvaluator.py'
 kiwi data/helloworld.kiwi
 ```
 
-<-- Youtube link (to be added) -->
+**Note**
+
+If alias does not work on your system, run
+```
+python3 ./src/interpreter/KiwiEvaluator.py <filename>.kiwi
+```
+
+**Link to Youtube Video**
+
+Click here: https://youtu.be/8BzWCBAFuTo
 
 **Note**
 - We have implemented function declaration, function call for the language
