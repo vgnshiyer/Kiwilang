@@ -16,4 +16,5 @@ fn isarmstrong:(n){
 }
 
 isarmstrong(371)
+print nl
 isarmstrong(125)
