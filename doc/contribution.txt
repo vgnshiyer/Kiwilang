@@ -59,3 +59,12 @@ Week 3 (Apr 23 - Apr 28)
     - Refactored structure
     - Added methods for update environment
     - Added interpreter for functionCall
+    
+3. Vamsi Krishna Yadav Loya 
+   - Worked on defining program structure to kiwi program language
+   - Added Block semantics 
+   - Defined sequence of execution in blocks
+   - Added Declaration and ternary expressions semantics
+   - Worked in functions definition and their execution
+   - Helped in writing some basic programs in kiwi
+  
