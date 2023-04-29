@@ -50,7 +50,7 @@ python3 ./src/interpreter/KiwiEvaluator.py <filename>.kiwi
 
 **Link to Youtube Video**
 
-Click here: (https://youtu.be/8BzWCBAFuTo)[https://youtu.be/8BzWCBAFuTo]
+Click here: https://youtu.be/8BzWCBAFuTo
 
 **Note**
 - We have implemented function declaration, function call for the language
