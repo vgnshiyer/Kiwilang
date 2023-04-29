@@ -1,0 +1,19 @@
+fn isarmstrong:(n){
+    int k:=n
+    int sum:=0
+
+    while(k!=0){
+        int d := (k-(10*(k/10)))
+        sum := sum+(d*d*d)
+        k := k/10
+    }
+    print n
+    if(sum==n){
+        print " is an armstrong."
+    }else {
+        print " is not an armstrong."
+    }
+}
+
+isarmstrong(371)
+isarmstrong(125)
