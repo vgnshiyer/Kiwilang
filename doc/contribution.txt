@@ -59,3 +59,10 @@ Week 3 (Apr 23 - Apr 28)
     - Refactored structure
     - Added methods for update environment
     - Added interpreter for functionCall
+ 
+ 3. Sri Harsha Gajavalli
+    - Code Review
+    - Sample Programs
+    - Powerpoint presentation
+    - Requirements verification and validation
+    - Demo video (Recording and editing)
