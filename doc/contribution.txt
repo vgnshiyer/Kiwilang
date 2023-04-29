@@ -59,10 +59,24 @@ Week 3 (Apr 23 - Apr 28)
     - Refactored structure
     - Added methods for update environment
     - Added interpreter for functionCall
+    - Added sample programs in kiwi language
  
  3. Sri Harsha Gajavalli
+    - Researched on applying semantics to Antlr Visitor
     - Code Review
     - Sample Programs
     - Powerpoint presentation
     - Requirements verification and validation
     - Demo video (Recording and editing)
+
+4. Vamsi Krishna Yadav Loya
+    - Contributed to logic in sematics for conditional statements
+    - Added docs to readme
+    - Bug fixing
+    - Contributed to declaration and ternary operation semantics
+
+5. Anish Unnikrishnan Nair
+    - Added docs for kiwi language
+    - Refactoring (enhancing code)
+    - Contributed to language semantics in pair programming sessions
+    - Contributed to Powerpoint presentation for the language
