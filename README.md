@@ -1,11 +1,43 @@
-# SER502-Spring23-Team5
+# Kiwi Language
 
-##### Team members
-1. Naga Venkata Dharani Vishwanadh Chinta
-2. Sri Harsha Gajavalli
-3. Vignesh Venkatachalam Iyer
-4. Vamsi Krishna Yadav Loya
-5. Anish Unnikrishnan Nair
+Kiwi is an imperative programming language that follows a minimalistic design for writing simple programs.
+The name given to the language emphasizes the simplicity and ease of use of the language.
+It has a syntax that is easy to learn, with familiar constructs for control flow, variables and functions found in most modern programming languages.
+Kiwi also includes a number of built-in data types(numbers, booleans, strings), logic operators(AND, OR, NOT). Additionally, it also supports the ternary operator.
+
+Language Grammar:
+Program Structure: A program is composed of a series of functions and a main block containing declarations and commands.
+
+Blocks: A block consists of a series of function definitions followed by a series of declarations and commands. Function definitions are optional and can be omitted if not required.
+
+Declarations: Variables can be declared with a specific data type (let, int, float, or string) and an optional initial value. Ternary expressions can also be used as initial values.
+
+Commands: The language supports various commands, including:
+
+Print command for outputting expressions.
+Variable assignment using expressions or ternary expressions.
+Conditional statements (if-else) with Boolean expressions.
+While loops with a Boolean condition.
+For loops with two forms: traditional counter-based loops and range-based loops.
+Functions: Functions are defined with a name, input parameters, a block of declarations and commands, and a return statement using the "give" keyword.
+
+Boolean Expressions: Booleans can be represented by true, false, equality comparisons between expressions, or negated Boolean expressions.
+
+Expressions: Expressions can be formed using basic arithmetic operations (addition, subtraction, multiplication, division), parentheses for grouping, variables, or numbers.
+
+Ternary Expressions: The language supports ternary expressions in the form "Identifier == Expression ? Expression : Expression".
+
+Data Types: The language supports four data types: let (for type inference), int, float, and string.
+
+Identifiers: Identifiers are used for naming variables and functions and must begin with a letter or underscore, followed by any combination of letters, digits, or underscores.
+
+Numbers: Numbers are sequences of digits.
+
+Comparisons: Comparison operators include less than, greater than, less than or equal to, greater than or equal to, and equality.
+
+This grammar defines a versatile imperative programming language with support for modern programming constructs such as functions, loops, and conditional statements.
+
+Checkout: /src/interpreter/grammar/Kiwi.g4
 
 **OS/Platform**
 ```
@@ -48,14 +80,7 @@ If alias does not work on your system, run
 python3 ./src/interpreter/KiwiEvaluator.py <filename>.kiwi
 ```
 
-**Link to Youtube Video**
-
-Click here: https://youtu.be/8BzWCBAFuTo
-
-**Note**
-- We have implemented function declaration, function call for the language
-    - Recursive functions are not working as of now in the current version. Any recursive function that you write will return a Null object.
-- The grammar in the actual project may not be exactly equal to the grammar specified in milestone 1. 
-    - We made some concious decisions with changing the grammar for the language as it felt feasible while implementing
-    - However, the main objective of having a simple minimalistic language still holds true.
+**Version notes**
+- Imperative function calls are supported.
+- Recursive functions are not working as of now in the current version. Any recursive function that you write will return a Null object.
 - This language does not have a compiler and a runtime. It is an interpreted language.
