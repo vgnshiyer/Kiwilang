@@ -39,6 +39,27 @@ This grammar defines a versatile imperative programming language with support fo
 
 Checkout: /src/interpreter/grammar/Kiwi.g4
 
+**Program to check if a number is a prime number**
+
+```
+fn isprime : (n) {
+    bool fl := true
+    for(int i:=2;i<n;i++){
+        if(i*(n/i)==n){
+            fl := false
+        }
+    }
+    print n
+    if(fl==false){
+        print " is not a prime number."
+    }else{
+        print " is a prime number."
+    }
+}
+
+isprime(17)
+```
+
 **OS/Platform**
 ```
 MacOs
