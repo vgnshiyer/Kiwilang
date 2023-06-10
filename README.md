@@ -101,12 +101,3 @@ If alias does not work on your system, run
 python3 ./src/interpreter/KiwiEvaluator.py <filename>.kiwi
 ```
 
-**Version notes**
-- Imperative function calls are supported.
-- Recursive functions are not working as of now in the current version. Any recursive function that you write will return a Null object.
-- This language does not have a compiler and a runtime. It is an interpreted language.
-
-**Contributors**
-- [vgnshiyer](https://github.com/vgnshiyer)
-- [nvchinta](https://github.com/DharaniChinta)
-- [hardlyhuman](https://github.com/hardlyhuman)
